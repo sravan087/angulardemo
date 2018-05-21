@@ -1,0 +1,34 @@
+<div class="container" *ngFor="let tran of transactions">
+
+    <div class="panel">
+        <div class="row">
+            <div class="col-md-2">
+                {{tran.id}}
+            </div>
+            <div class="col-md-2">
+                {{tran.tradeDate | date }}
+            </div>
+            <div class="col-md-2">
+                {{tran.settleDate | date}}
+            </div>
+            <div class="col-md-2">
+                {{tran.amount}}
+            </div>
+            <div class="col-md-2">
+                {{tran.bloombergToAccount}}
+            </div>
+            <div class="col-md-2">
+                {{tran.bloombergFromAccount}}
+            </div>
+    
+        </div>
+    </div>
+    
+
+  
+
+    
+</div>
+
+
+

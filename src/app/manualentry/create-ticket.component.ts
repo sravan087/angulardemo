@@ -40,10 +40,14 @@ export class CreateTicketComponent implements OnInit {
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      transCodeCtrl: ['', Validators.required],
+      transTypeCtrl: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ''
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrl: ''
     });
   }
 

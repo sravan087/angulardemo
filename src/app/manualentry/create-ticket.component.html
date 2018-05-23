@@ -1,21 +1,44 @@
-<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
+<button mat-raised-button (click)="isOptional = !isOptional">
+  {{!isOptional ? 'Enable optional steps' : 'Disable optional steps'}}
 </button>
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
+
+<mat-horizontal-stepper [linear]="true" #stepper>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Fill out your name</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-      </mat-form-field>
-      <div>
+
+      <ng-template matStepLabel>General Info</ng-template>
+      <div class="row">
+        <div class="col">
+            Transaction Code
+        </div>
+        <div class="col">
+            <mat-form-field>
+                <mat-select placeholder="Trans Code" formControlName="transCodeCtrl" >
+                  <mat-option *ngFor="let tranCode of transCodes" [value] = "tranCode.transCode">
+                    {{ tranCode.transDesc }}
+                  </mat-option>
+                </mat-select>        
+              </mat-form-field>
+        </div>
+          
+      </div>
+     <div class="row">
+        <mat-radio-group formControlName="transTypeCtrl">
+            <mat-radio-button value="1">Option 1</mat-radio-button>
+            <mat-radio-button value="2">Option 2</mat-radio-button>
+          </mat-radio-group>
+     </div>
+
+      
+    
+      <div class="row">
         <button mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
+  <mat-step [stepControl]="secondFormGroup" [optional]="isOptional">
     <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
+      <ng-template matStepLabel>Account Info</ng-template>
       <mat-form-field>
         <input matInput placeholder="Address" formControlName="secondCtrl" required>
       </mat-form-field>
@@ -25,8 +48,20 @@
       </div>
     </form>
   </mat-step>
+  <mat-step [stepControl]="thirdFormGroup" [optional]="isOptional">
+      <form [formGroup]="thirdFormGroup">
+        <ng-template matStepLabel>Amount Info</ng-template>
+        <mat-form-field>
+          <input matInput placeholder="Amount" formControlName="thirdCtrl" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
   <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
+    <ng-template matStepLabel >Done</ng-template>
     You are now done.
     <div>
       <button mat-button matStepperPrevious>Back</button>
@@ -34,3 +69,4 @@
     </div>
   </mat-step>
 </mat-horizontal-stepper>
+

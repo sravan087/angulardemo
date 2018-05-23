@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule, MatOptionModule, MatSelectModule, MatInputModule,
-MatStepperModule
+MatStepperModule, MatRadioModule
 } from '@angular/material';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -13,7 +13,7 @@ import { RouterModule, Routes, Router } from '@angular/router'
 
 
 import { AppComponent } from './app.component';
-import { LstTransactionsComponent } from './daily-activity/lst-transactions.component';
+import { LstTransactionsComponent } from './dailyactivity/lst-transactions.component';
 import { CreateTicketComponent } from './manualentry/create-ticket.component';
 
 const appRoutes: Routes = [{ path:'transactions', component:LstTransactionsComponent },
@@ -39,7 +39,7 @@ const appRoutes: Routes = [{ path:'transactions', component:LstTransactionsCompo
     MatInputModule,
     MatStepperModule,
     MatFormFieldModule,
-    
+    MatRadioModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

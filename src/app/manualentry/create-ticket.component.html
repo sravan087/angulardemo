@@ -4,44 +4,177 @@
 
 <mat-horizontal-stepper [linear]="true" #stepper>
   <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
+    <form  class="example-form" [formGroup]="firstFormGroup">
 
       <ng-template matStepLabel>General Info</ng-template>
       <div class="row">
-        <div class="col">
-            Transaction Code
-        </div>
-        <div class="col">
-            <mat-form-field>
-                <mat-select placeholder="Trans Code" formControlName="transCodeCtrl" >
-                  <mat-option *ngFor="let tranCode of transCodes" [value] = "tranCode.transCode">
-                    {{ tranCode.transDesc }}
-                  </mat-option>
-                </mat-select>        
-              </mat-form-field>
-        </div>
-          
+       
+        <div class="col-md-12">
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
+                  <input type="text" placeholder="Transaction Description" aria-label="Transaction" 
+                  matInput [formControl]="transDescCtrl" [matAutocomplete]="auto" required>
+                  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                    <mat-option *ngFor="let foption of filteredOptions | async" [value]="foption.transCode">
+                      {{ foption.transDesc }}
+                    </mat-option> 
+                  </mat-autocomplete>
+                </mat-form-field>
+              </form>
+        </div>        
       </div>
+      <div class="row">
+       
+          <div class="col-md-12">
+              <form class="example-form">
+                  <mat-form-field class="example-full-width">
+                    <input type="text" placeholder="Lost Reason" aria-label="LostReason" 
+                    matInput [formControl]="lostReasonCtrl" [matAutocomplete]="auto" required>
+                    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                      <mat-option *ngFor="let option of lostReasonOptions | async" [value]="option">
+                        {{ option }}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+                </form>
+          </div>        
+        </div>
+      <div class="row">
+       
+          <div class="col-md-12">
+              <form class="example-form">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Comment" value="">
+                  </mat-form-field>
+                  
+                </form>
+          </div>        
+        </div>
+
+        <div class="row">
+       
+            <div class="col-md-12">
+                <form class="example-form">
+                    <div class="form-group">
+                        <label for="file">Choose File</label>
+                        <input class="form-control" type="file" placeholder="Upload File..."
+                               id="file"
+                               (change)="handleFileInput($event.target.files)">
+                    </div>
+
+                    
+                    
+                  </form>
+            </div>        
+          </div>
      <div class="row">
-        <mat-radio-group formControlName="transTypeCtrl">
-            <mat-radio-button value="1">Option 1</mat-radio-button>
-            <mat-radio-button value="2">Option 2</mat-radio-button>
-          </mat-radio-group>
+       <div class="col-md-12">
+          <mat-checkbox>Recurring Transactios</mat-checkbox>
+          
+       </div>
+        
      </div>
 
       
     
       <div class="row">
-        <button mat-button matStepperNext>Next</button>
+          <div class="col-md-12">
+              <button mat-button matStepperNext>Next</button>
+              
+           </div>
+       
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup" [optional]="isOptional">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Account Info</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="secondCtrl" required>
-      </mat-form-field>
+      <div class="row">
+          <div class="col-md-3">
+              <mat-form-field class="example-full-width"> 
+                  <mat-select placeholder="AccountFrom" formControlName="AccountFromCtrl" >
+                      <mat-option *ngFor="let tranCode of transCodes" [value] = "tranCode.transCode">
+                        {{ tranCode.transDesc }}
+                      </mat-option>
+                    </mat-select> 
+                </mat-form-field>
+          </div>
+          <div class="col-md-3">
+              <mat-form-field>
+                 <mat-select placeholder="ClientSubAccountFrom" formControlName="ClientSubAccountFromCtrl" >
+                    <mat-option *ngFor="let tranCode of transCodes" [value] = "tranCode.transCode">
+                      {{ tranCode.transDesc }}
+                    </mat-option>
+                  </mat-select> 
+              </mat-form-field>
+              </div>
+
+              <div class="col-md-3">
+                  <mat-form-field>
+                       <mat-select placeholder="ClientNameFrom" formControlName="ClientNameFromCtrl" >
+                          <mat-option *ngFor="let tranCode of transCodes" [value] = "tranCode.transCode">
+                            {{ tranCode.transDesc }}
+                          </mat-option>
+                        </mat-select> 
+                    </mat-form-field>
+              </div>
+
+              <div class="col-md-3">
+                  <mat-form-field>
+                    <mat-select placeholder="DeskFrom" formControlName="DeskFromCtrl" >
+                        <mat-option *ngFor="let tranCode of transCodes" [value] = "tranCode.transCode">
+                          {{ tranCode.transDesc }}
+                        </mat-option>
+                      </mat-select> 
+                  </mat-form-field>
+                </div>
+      </div>
+      
+      <div class="row">
+          <div class="col-md-3">
+              <mat-form-field>
+                 
+                  <mat-select placeholder="Account" formControlName="AccountToCtrl" >
+                      <mat-option *ngFor="let tranCode of transCodes" [value] = "tranCode.transCode">
+                        {{ tranCode.transDesc }}
+                      </mat-option>
+                    </mat-select> 
+                </mat-form-field>
+          </div>
+          <div class="col-md-3">
+              <mat-form-field>
+                  <mat-select placeholder="ClientSubAccount" formControlName="ClientSubAccountToCtrl" >
+                      <mat-option *ngFor="let tranCode of transCodes" [value] = "tranCode.transCode">
+                        {{ tranCode.transDesc }}
+                      </mat-option>
+                    </mat-select> 
+              </mat-form-field>
+              </div>
+
+              <div class="col-md-3">
+                  <mat-form-field>
+                       <mat-select placeholder="ClientName" formControlName="ClientNameToCtrl" >
+                          <mat-option *ngFor="let tranCode of transCodes" [value] = "tranCode.transCode">
+                            {{ tranCode.transDesc }}
+                          </mat-option>
+                        </mat-select> 
+                    </mat-form-field>
+              </div>
+
+              <div class="col-md-3">
+                  <mat-form-field>
+                    <mat-select placeholder="Desk" formControlName="DeskToCtrl" >
+                        <mat-option *ngFor="let tranCode of transCodes" [value] = "tranCode.transCode">
+                          {{ tranCode.transDesc }}
+                        </mat-option>
+                      </mat-select> 
+                  </mat-form-field>
+                </div>
+      </div>
+      
+     
+
+   
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>

@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule, MatOptionModule, MatSelectModule, MatInputModule,
-MatStepperModule, MatRadioModule
+MatStepperModule, MatRadioModule, MatAutocompleteModule
 } from '@angular/material';
 
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -40,6 +40,7 @@ const appRoutes: Routes = [{ path:'transactions', component:LstTransactionsCompo
     MatStepperModule,
     MatFormFieldModule,
     MatRadioModule,
+    MatAutocompleteModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

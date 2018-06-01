@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Transaction } from '../models/Transaction';
+import { Transaction } from '../../models/Transaction';
 
 @Component({
   selector: 'app-lst-transaction',
@@ -17,7 +17,7 @@ export class LstTransactionsComponent implements OnInit {
         tranCode : "SUBSCR",
         bloombergToAccount : "CDHTY",
         bloombergFromAccount:""
-        
+
 
      },
      {

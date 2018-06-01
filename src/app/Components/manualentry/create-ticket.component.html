@@ -6,31 +6,30 @@
   <mat-step [stepControl]="firstFormGroup">
     <form  class="example-form" [formGroup]="firstFormGroup">
 
-      <ng-template matStepLabel>General Info</ng-template>
-      <div class="row">
-       
-        <div class="col-md-12">
-            <form class="example-form">
-                <mat-form-field class="example-full-width">
-                  <input type="text" placeholder="Transaction Description" aria-label="Transaction" 
-                  matInput [formControl]="transDescCtrl" [matAutocomplete]="auto" required>
-                  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-                    <mat-option *ngFor="let foption of filteredOptions | async" [value]="foption.transCode">
-                      {{ foption.transDesc }}
-                    </mat-option> 
-                  </mat-autocomplete>
-                </mat-form-field>
-              </form>
-        </div>        
-      </div>
-      <div class="row">
-       
+      <div>
+        <ng-template matStepLabel>General Info</ng-template>
+         <div class="row">
           <div class="col-md-12">
               <form class="example-form">
                   <mat-form-field class="example-full-width">
-                    <input type="text" placeholder="Lost Reason" aria-label="LostReason" 
-                    matInput [formControl]="lostReasonCtrl" [matAutocomplete]="auto" required>
+                    <input type="text" placeholder="Transaction Description" aria-label="Transaction" 
+                    matInput [formControl]="transDescCtrl" [matAutocomplete]="auto" required>
                     <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                      <mat-option *ngFor="let foption of filteredOptions | async" [value]="foption.transCode">
+                        {{ foption.transDesc }}
+                      </mat-option> 
+                    </mat-autocomplete>
+                  </mat-form-field>
+                </form>
+          </div>        
+        </div>
+        <div class="row">
+          <div *ngIf="IfRedemption()" class="col-md-12">
+              <form class="example-form">
+                  <mat-form-field class="example-full-width">
+                    <input type="text" placeholder="Lost Reason" aria-label="LostReason" 
+                    matInput [formControl]="lostReasonCtrl" [matAutocomplete]="autoo" required>
+                    <mat-autocomplete #autoo="matAutocomplete" [displayWith]="displayFn">
                       <mat-option *ngFor="let option of lostReasonOptions | async" [value]="option">
                         {{ option }}
                       </mat-option>
@@ -39,50 +38,37 @@
                 </form>
           </div>        
         </div>
-      <div class="row">
-       
-          <div class="col-md-12">
-              <form class="example-form">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Comment" value="">
-                  </mat-form-field>
-                  
-                </form>
-          </div>        
-        </div>
-
         <div class="row">
-       
             <div class="col-md-12">
                 <form class="example-form">
-                    <div class="form-group">
-                        <label for="file">Choose File</label>
-                        <input class="form-control" type="file" placeholder="Upload File..."
-                               id="file"
-                               (change)="handleFileInput($event.target.files)">
-                    </div>
-
-                    
-                    
-                  </form>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Comment" value="">
+                    </mat-form-field>
+                </form>
             </div>        
           </div>
-     <div class="row">
-       <div class="col-md-12">
-          <mat-checkbox>Recurring Transactios</mat-checkbox>
-          
+          <div class="row">
+             <div class="col-md-12">
+                  <form class="example-form">
+                      <div class="form-group">
+                          <label for="file">Choose File</label>
+                          <input class="form-control" type="file" placeholder="Upload File..."
+                                 id="file"
+                                 (change)="handleFileInput($event.target.files)">
+                      </div>                   
+                    </form>
+              </div>        
+            </div>
+       <div class="row">
+         <div class="col-md-12">
+            <mat-checkbox>Recurring Transactios</mat-checkbox>
+            </div>
        </div>
-        
-     </div>
-
-      
-    
-      <div class="row">
-          <div class="col-md-12">
-              <button mat-button matStepperNext>Next</button>
-              
-           </div>
-       
+        <div class="row">
+            <div class="col-md-12">
+                <button mat-button matStepperNext>Next</button>
+             </div>
+          </div>
       </div>
     </form>
   </mat-step>
@@ -202,4 +188,3 @@
     </div>
   </mat-step>
 </mat-horizontal-stepper>
-

@@ -1,4 +1,4 @@
-export class CashTicket{
+export class CashTicket {
     id: number;
     transCode: string;
     transType: string;

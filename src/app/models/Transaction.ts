@@ -1,5 +1,4 @@
-export class Transaction
-{
+export class Transaction {
     id: number;
     tradeDate: Date;
     settleDate: Date;
